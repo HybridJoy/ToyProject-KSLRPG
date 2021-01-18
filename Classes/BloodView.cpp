@@ -17,9 +17,9 @@ void BloodView::setBackgroundTexture(const char *pName)
 
 void BloodView::setForegroundTexture(const char *pName)
 {
-	m_progressForeground = CCSprite::create(pName);
-	m_progressForeground->setAnchorPoint(ccp(0.0f, 0.5f));
-	m_progressForeground->setPosition(ccp(-m_progressForeground->getContentSize().width * 0.5f, 0));
+	m_progressForeground = Sprite::create(pName);
+	m_progressForeground->setAnchorPoint(Point(0.0f, 0.5f));
+	m_progressForeground->setPosition(Point(-m_progressForeground->getContentSize().width * 0.5f, 0));
 	this->addChild(m_progressForeground);
 }
 
@@ -37,12 +37,12 @@ void BloodView::setCurrentProgress(float progress)
 	if (progress > m_totalProgress) { progress = m_totalProgress; }
 	m_currentProgress = progress;
 	float rectWidth = progress * m_scale;
-	const CCPoint from = m_progressForeground->getTextureRect().origin;
-	const CCRect rect = CCRectMake(from.x, from.y, rectWidth, m_progressForeground->getContentSize().height);
+	const Point from = m_progressForeground->getTextureRect().origin;
+	const Rect rect = Rect(from.x, from.y, rectWidth, m_progressForeground->getContentSize().height);
 	setForegroundTextureRect(rect);
 }
 
-void BloodView::setForegroundTextureRect(const CCRect &rect)
+void BloodView::setForegroundTextureRect(const Rect &rect)
 {
 	m_progressForeground->setTextureRect(rect);
 }

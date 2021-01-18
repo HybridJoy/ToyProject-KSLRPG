@@ -90,7 +90,7 @@ bool Damage::init(Hero * hero, int type) {
 		break;
 	}
 
-	this->schedule(schedule_selector(Damage::disCheck), 0.1f);
+	this->schedule(CC_SCHEDULE_SELECTOR(Damage::disCheck), 0.1f);
 
 	return true;
 }
@@ -151,7 +151,7 @@ void Damage::disCheck(float delta) {
 			if (((Hero*)b->getNode())->getGroup() == ((Damage *)a->getNode())->getGroup())	return false;
 			((Hero*)b->getNode())->causeDamage(static_cast<Damage *>(userData)->getDamageValue());
 			// this->m_fDamageValue=0;
-			static_cast<Damage *>(userData)->unscheduleAllSelectors();
+			static_cast<Damage *>(userData)->unscheduleAllCallbacks();
 			static_cast<Damage *>(userData)->removeFromParentAndCleanup(true);
 			return false;
 		}

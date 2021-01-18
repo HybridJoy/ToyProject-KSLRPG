@@ -31,13 +31,13 @@ bool AIManager::init() {
 }
 
 void AIManager::stopEnemy() {
-	this->unscheduleAllSelectors();
+	this->unscheduleAllCallbacks();
 }
 
 void AIManager::startEnemy() {
-	this->schedule(schedule_selector(AIManager::updateStatus), 0.1f);
-	this->schedule(schedule_selector(AIManager::patrol), 0.2f);
-	this->schedule(schedule_selector(AIManager::trackAndAttack), 0.5f);
+	this->schedule(CC_SCHEDULE_SELECTOR(AIManager::updateStatus), 0.1f);
+	this->schedule(CC_SCHEDULE_SELECTOR(AIManager::patrol), 0.2f);
+	this->schedule(CC_SCHEDULE_SELECTOR(AIManager::trackAndAttack), 0.5f);
 }
 
 void AIManager::setHero(Hero * hero) {

@@ -39,7 +39,7 @@ bool StartLoadingScene :: init()
 
 	auto callFunc = CallFunc::create([=]()
 	{
-		tDirector->setSendCleanupToScene(true);
+		// tDirector->setSendCleanupToScene(true);
 		tDirector->replaceScene(GameStartScene :: createScene());
 	});
 

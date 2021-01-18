@@ -37,22 +37,22 @@ SkillButton* SkillButton::createSkillButton(float cdTime, const char* stencil_fi
 bool SkillButton::init(float cdTime, const char* stencil_file_name, const char* button_normal_name, const char* button_click_name)
 {
 	//Add skll button
-	mItemSkill = CCMenuItemImage::create(button_normal_name, button_click_name, this, menu_selector(SkillButton::skillClickCallBack));
-	mItemSkill->setPosition(CCPointZero);
-	mMenuSkill = CCMenu::create(mItemSkill, NULL);
-	mMenuSkill->setPosition(CCPointZero);
+	mItemSkill = MenuItemImage::create(button_normal_name, button_click_name, CC_CALLBACK_1(SkillButton::skillClickCallBack, this));
+	mItemSkill->setPosition(Point::ZERO);
+	mMenuSkill = Menu::create(mItemSkill, NULL);
+	mMenuSkill->setPosition(Point::ZERO);
 	addChild(mMenuSkill, -100);
 
 	//Add shadow
-	mStencil = CCSprite::create(stencil_file_name);
-		mStencil->setPosition(CCPointZero);
+	mStencil = Sprite::create(stencil_file_name);
+		mStencil->setPosition(Point::ZERO);
 	mStencil->setVisible(false);
 	addChild(mStencil);
 
 	//Add CD sprite
-	CCSprite* progressSprite = CCSprite::create(button_normal_name);
-	mProgressTimer = CCProgressTimer::create(progressSprite);
-	mProgressTimer->setPosition(CCPointZero);
+	Sprite* progressSprite = Sprite::create(button_normal_name);
+	mProgressTimer = ProgressTimer::create(progressSprite);
+	mProgressTimer->setPosition(Point::ZERO);
 	mProgressTimer->setVisible(false);
 	addChild(mProgressTimer, 100);
 
@@ -60,7 +60,7 @@ bool SkillButton::init(float cdTime, const char* stencil_file_name, const char* 
 	return true;
 }
 
-void SkillButton::skillClickCallBack(cocos2d::CCObject* obj)
+void SkillButton::skillClickCallBack(Ref* obj)
 {
 	//Use skill here
 	switch (m_SkillType){
@@ -79,15 +79,15 @@ void SkillButton::skillClickCallBack(cocos2d::CCObject* obj)
 	mStencil->setVisible(true);
 
 	mProgressTimer->setVisible(true);
-	mProgressTimer->setType(kCCProgressTimerTypeRadial);
+	mProgressTimer->setType(ProgressTimer::Type::RADIAL);
 
 	//CD action
-	CCActionInterval* action_progress_to = CCProgressTo::create(mCDTime, 100);
-	CCCallFunc* action_callback = CCCallFuncN::create(this, callfuncN_selector(SkillButton::skillCoolDownCallBack));
-	mProgressTimer->runAction(CCSequence::create(action_progress_to, action_callback, NULL));
+	ActionInterval* action_progress_to = ProgressTo::create(mCDTime, 100);
+	CallFunc* action_callback = CallFuncN::create(CC_CALLBACK_1(SkillButton::skillCoolDownCallBack, this));
+	mProgressTimer->runAction(Sequence::create(action_progress_to, action_callback, NULL));
 }
 
-void SkillButton::skillCoolDownCallBack(CCNode* node)
+void SkillButton::skillCoolDownCallBack(Node* node)
 {
 	//CD over
 	mStencil->setVisible(false);

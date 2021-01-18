@@ -66,7 +66,6 @@ bool LoadingScene :: init ()
 	icon->runAction(Sequence::create(Animate :: create(animation),
 		RemoveSelf::create(),
 		CallFunc::create([=]() {
-			tDirector->setSendCleanupToScene(true);
 			CCLOG("%d\n", map==nullptr);
 			tDirector->replaceScene(map);
 	}),

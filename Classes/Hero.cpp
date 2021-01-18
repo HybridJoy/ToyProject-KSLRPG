@@ -321,7 +321,7 @@ bool Hero::init(int type) {
 		break;
 	}
 
-	schedule(schedule_selector(Hero::setCool), 0.1f);
+	schedule(CC_SCHEDULE_SELECTOR(Hero::setCool), 0.1f);
 	this->updateAction();
 	//schedule(schedule_selector(setCool), 0.1f);
 	this->scheduleUpdate();

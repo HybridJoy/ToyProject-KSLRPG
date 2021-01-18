@@ -123,7 +123,7 @@ void MapSwitcher::init() {
 	uiLayer->addChild(menu, 1, 108);
 
 	auto m_pBloodView = new BloodView();
-	m_pBloodView->setPosition(ccp(150, 450));
+	m_pBloodView->setPosition(Point(150, 450));
 	m_pBloodView->setScale(1.5f);
 	m_pBloodView->setBackgroundTexture("hp1.png");
 	m_pBloodView->setForegroundTexture("hp2.png");
@@ -191,8 +191,9 @@ void MapSwitcher::update(float delta) {
 		dynamic_cast<MapScene *>(curMap->getChildByTag(13))->addChildAndRecord(hero, 1, 16);
 		dynamic_cast<MapScene *>(curMap->getChildByTag(13))->addChildAndRecord(uiLayer, 2, 999);
 		
-		tDirector->setSendCleanupToScene(false);
-		tDirector->replaceScene(curMap);
+		// tDirector->setSendCleanupToScene(false);
+		// tDirector->replaceScene(curMap);
+		tDirector->pushScene(curMap);
 
 		dynamic_cast<AIManager *>(curMap->getChildByTag(13)->getChildByTag(256))->startEnemy();
 

@@ -1,8 +1,6 @@
 #include "Terrain.h"
-USING_NS_CC;
 
-
-bool Terrain::loadResources() {
+bool ::Terrain::loadResources() {
 	static bool done = false;
 	if(done) return 0;
 	// load resources here
@@ -11,13 +9,13 @@ bool Terrain::loadResources() {
 	return 1;
 }
 
-bool Terrain::init() {
+bool ::Terrain::init() {
 	//Terrain::loadResources();
 	loadResources();
 	return 1;
 }
 
-void Terrain::initPhysicsBody() {
+void ::Terrain::initPhysicsBody() {
 	auto body = PhysicsBody::createBox(this->getContentSize());
 	body->setGravityEnable(false); // Terrain cant afforded by gravity
 	body->setDynamic(false);
@@ -28,11 +26,11 @@ void Terrain::initPhysicsBody() {
 	this->setPhysicsBody(body);
 }
 
-bool Terrain::initSprite(std::string name) {
+bool ::Terrain::initSprite(std::string name) {
 	return this->initWithFile(name);
 }
 
-void Terrain :: initAreaPhysicsBody(Point left_top,Point right_bottom)
+void ::Terrain :: initAreaPhysicsBody(Point left_top,Point right_bottom)
 {
 	auto body = PhysicsBody :: createEdgeBox(Size(right_bottom.x - left_top.x,right_bottom.y - left_top.y));
 	body->setGravityEnable(false); // Terrain cant afforded by gravity

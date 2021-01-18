@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-class Terrain : public cocos2d::Sprite {
+class Terrain : public Sprite {
 public:
 	
 	static bool loadResources(); // resource loader, carried once

@@ -80,7 +80,7 @@ void MapScene::createMap(Point pos, int num, int type, std::string mapBlock)
 	case 7:
 	case 8:
 		for (int i = 0; i < num; i++) {
-			auto ground = Terrain::create();
+			auto ground = ::Terrain::create();
 			ground->initSprite(mapBlock);
 			float x = pos.x + x_varaition * i;
 			float y = pos.y + y_varaition * i;
@@ -107,7 +107,7 @@ void MapScene::createMap(Point pos, int num, int type, std::string mapBlock)
 			this->addChild(ground, 1);
 		}
 		float x1, y1, x2, y2;
-		auto t = Terrain::create();
+		auto t = ::Terrain::create();
 		t->initSprite("transparent.png");
 		if (type == 4 || type == 6) {
 			x1 = pos.x + (num - 1) * x_varaition - 12.5;
