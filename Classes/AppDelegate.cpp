@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "StartLoadingScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 
@@ -107,8 +107,21 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     register_all_packages();
 
+	// config file search path
+	FileUtils::getInstance()->addSearchPath("background");
+	FileUtils::getInstance()->addSearchPath("fonts");
+	FileUtils::getInstance()->addSearchPath("ground");
+	FileUtils::getInstance()->addSearchPath("hero");
+	FileUtils::getInstance()->addSearchPath("heroTexture");
+	FileUtils::getInstance()->addSearchPath("TexturePack");
+	FileUtils::getInstance()->addSearchPath("UI");
+	FileUtils::getInstance()->addSearchPath("item");
+	FileUtils::getInstance()->addSearchPath("monster data");
+	FileUtils::getInstance()->addSearchPath("icon");
+
+	
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = StartLoadingScene::createScene();
 
     // run
     director->runWithScene(scene);
